@@ -1,0 +1,32 @@
+{
+  "type": "library",
+  "name": "mcaskill/bedrock-autoloader",
+  "description": "Standalone version of the Bedrock Autoloader for WordPress must-use plugins.",
+  "keywords": [ "bedrock", "roots", "wordpress", "wp" ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Scott Walkinshaw",
+      "email": "scott.walkinshaw@gmail.com",
+      "homepage": "https://github.com/swalkinshaw"
+    },
+    {
+      "name": "Ben Word",
+      "email": "ben@benword.com",
+      "homepage": "https://github.com/retlehs"
+    },
+    {
+      "name": "Chauncey McAskill",
+      "email": "chauncey@mcaskill.ca",
+      "homepage": "https://github.com/mcaskill"
+    }
+  ],
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "classmap": [
+      "includes/class-bedrock-autoloader.php"
+    ]
+  }
+}
