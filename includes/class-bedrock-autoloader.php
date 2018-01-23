@@ -40,9 +40,6 @@ class Autoloader
     /** @var array Newly activated plugins */
     private static $activated;
 
-    /** @var string Relative path to the mu-plugins dir */
-    private static $relative_path;
-
     /** @var static Singleton instance */
     private static $_single;
 
@@ -56,10 +53,9 @@ class Autoloader
         }
 
         self::$_single = $this;
-        self::$relative_path = '/../' . basename(__DIR__);
 
         if (is_admin()) {
-            add_filter('show_advanced_plugins', [$this, 'showInAdmin'], 0, 2);
+            add_filter('show_advanced_plugins', [ $this, 'showInAdmin' ], 0, 2);
         }
 
         $this->loadPlugins();
@@ -90,7 +86,7 @@ class Autoloader
      */
     public function showInAdmin($show, $type)
     {
-        $screen = get_current_screen();
+        $screen  = get_current_screen();
         $current = is_multisite() ? 'plugins-network' : 'plugins';
 
         if ($screen->{'base'} != $current || $type != 'mustuse' || !current_user_can('activate_plugins')) {
@@ -116,7 +112,7 @@ class Autoloader
     {
         $cache = get_site_option('bedrock_autoloader');
 
-        if ($cache === false) {
+        if (empty($cache)) {
             $this->updateCache();
             return;
         }
@@ -133,12 +129,12 @@ class Autoloader
     {
         require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
-        self::$auto_plugins = get_plugins(self::$relative_path);
+        self::$auto_plugins = get_plugins('/../' . basename(WPMU_PLUGIN_DIR));
         self::$mu_plugins   = get_mu_plugins();
         $plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
         $rebuild            = !is_array(self::$cache['plugins']);
         self::$activated    = ($rebuild) ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
-        self::$cache        = array('plugins' => $plugins, 'count' => $this->countPlugins());
+        self::$cache        = array( 'plugins' => $plugins, 'count' => $this->countPlugins() );
 
         update_site_option('bedrock_autoloader', self::$cache);
     }

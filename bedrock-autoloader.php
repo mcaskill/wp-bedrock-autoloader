@@ -20,4 +20,4 @@ if ( ! is_blog_installed() ) {
     return;
 }
 
-new \Roots\Bedrock\Autoloader(__DIR__);
+new \Roots\Bedrock\Autoloader();
