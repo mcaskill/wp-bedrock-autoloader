@@ -117,7 +117,7 @@ class Autoloader
     {
         $cache = get_site_option('bedrock_autoloader');
 
-        if (empty($cache)) {
+        if (empty($cache) || (isset($cache['plugins'], $cache['count']) && count($cache['plugins']) !== $cache['count'])) {
             $this->updateCache();
             return;
         }
