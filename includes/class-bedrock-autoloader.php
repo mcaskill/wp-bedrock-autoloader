@@ -43,6 +43,9 @@ class Autoloader
     /** @var static Singleton instance */
     private static $_single;
 
+    /** @var string Relative path to the mu-plugins dir */
+    private $relative_path;
+
     /**
      * Create singleton, populate vars, and set WordPress hooks
      */
@@ -53,6 +56,8 @@ class Autoloader
         }
 
         self::$_single = $this;
+
+        $this->relative_path = '/../' . basename(WPMU_PLUGIN_DIR);
 
         if (is_admin()) {
             add_filter('show_advanced_plugins', [ $this, 'showInAdmin' ], 0, 2);
@@ -129,7 +134,7 @@ class Autoloader
     {
         require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-        self::$auto_plugins = get_plugins('/../' . basename(WPMU_PLUGIN_DIR));
+        self::$auto_plugins = get_plugins($this->relative_path);
         self::$mu_plugins   = get_mu_plugins();
         $plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
         $rebuild            = !is_array(self::$cache['plugins']);
