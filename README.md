@@ -1,6 +1,6 @@
 # Bedrock Autoloader for WordPress
 
-Standalone version of the [Bedrock Autoloader](https://github.com/roots/bedrock/blob/1.12.4/web/app/mu-plugins/bedrock-autoloader.php) for must-use plugins.
+Standalone version of the [Bedrock Autoloader](https://github.com/roots/bedrock/blob/1.12.7/web/app/mu-plugins/bedrock-autoloader.php) for must-use plugins.
 
 ## Installation
 
