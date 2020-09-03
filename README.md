@@ -1,5 +1,13 @@
 # Bedrock Autoloader for WordPress
 
+## Unmaintained
+
+This project is no longer maintained in favor of official support:
+
+- [roots/bedrock-autoloader](https://github.com/roots/bedrock-autoloader)
+
+-----
+
 Standalone version of the [Bedrock Autoloader](https://github.com/roots/bedrock/blob/1.13.4/web/app/mu-plugins/bedrock-autoloader.php) for must-use plugins.
 
 ## Installation
